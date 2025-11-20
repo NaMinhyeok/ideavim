@@ -579,7 +579,9 @@ abstract class VimChangeGroupBase : VimChangeGroup {
     }
     lastStrokes = ArrayList(strokes)
     if (context != null) {
-      injector.changeGroup.repeatInsert(editor, context, repeatCount0, true)
+      if (editor.isWritable()) {
+        injector.changeGroup.repeatInsert(editor, context, repeatCount0, true)
+      }
     }
     if (editor.mode is Mode.INSERT) {
       updateLastInsertedTextRegister()
